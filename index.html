@@ -51,21 +51,17 @@
     // false nếu không nằm trong dãy Fibonacci.
 
     function isFibonacci(integer) {
-        if (integer === 0) {
+        let firstNum = 0;
+        let secondNum = 1;
+        while (secondNum < integer) {
+            let temp = secondNum;
+            secondNum = firstNum + secondNum;
+            firstNum = temp;
+        }
+        if (integer === firstNum || integer === secondNum) {
             return true;
         } else {
-            let firstNum = 0;
-            let secondNum = 1;
-            while (secondNum < integer) {
-                let temp = secondNum;
-                secondNum = firstNum + secondNum;
-                firstNum = temp;
-            }
-            if (integer === secondNum) {
-                return true;
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 
