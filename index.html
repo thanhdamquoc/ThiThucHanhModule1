@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <canvas id="myCanvas"></canvas>
+</div>
+</body>
+</html>
+<script>
+    // Cho danh sách các điểm thi ở trong một mảng.
+    // Hãy viết hàm findMax() với đầu vào là một mảng điểm
+    // và đầu ra là điểm số cao nhất được tìm thấy trong danh sách đó.
+
+    function findMax(array) {
+        let max = array[0];
+        for (let i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
+
+    console.log(findMax([1,2,3,4,5,4,6,7,8,3,2,1]));
+
+    // Viết hàm tryRemoveFromArray() nhận vào một mảng các số nguyên, và một số nguyên x.
+    //     Hàm  trả về mảng ban đầu nếu không có số nguyên x trong mảng.
+    //     Nếu tìm thấy số nguyên x trả về mảng sau khi xóa các số nguyênx đó.
+
+    function tryRemoveFromArray(array, x) {
+        let i = 0;
+        while (i < array.length) {
+            let thisElement = array[i];
+            if (thisElement === x) {
+                array.splice(i,1);
+            } else {
+                i++;
+            }
+        }
+        return array;
+    }
+    console.log(tryRemoveFromArray([1,2,3],4));
+    console.log(tryRemoveFromArray([1,2,3],2));
+
+    // Viết hàm isFibonacci() nhận vào một số nguyên ,
+    // trả về true nếu số đó là số nằm trong dãy Fibonacci
+    // false nếu không nằm trong dãy Fibonacci.
+
+    function isFibonacci(integer) {
+        let firstNum = 0;
+        let secondNum = 1;
+        while (secondNum < integer) {
+            let temp = secondNum;
+            secondNum = firstNum + secondNum;
+            firstNum = temp;
+        }
+        if (integer === secondNum) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    console.log(isFibonacci(34));
+    console.log(isFibonacci(35));
+    console.log(isFibonacci(377));
+    console.log(isFibonacci(378));
+
+    // Hãy viết một chương trình để biểu diễn hình tròn,
+    //     với môtả của lớp hình tròn như sau:
+    //     Circle:
+    //         Tên lớp-x:
+    // Toạ độ x-y:
+    // Toạ độ y-radius:
+    // bán kính-
+    // color: Màu sắc (sử dụng max hex)+
+    //     render(canvas): Hiển thị hình tròn trên một canvas35
+    // Hãy thực hiện các thao tác theo kịch bản sau:
+    //     - Tạo một hình tròn có toạ độ 10, 10 và bán kính 100,
+    //     màu #000000- Hiển thị hình tròn trên một canvas bằng cách sử dụng phương thức render
+    class Circle {
+        constructor(x,y,radius,color) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+        }
+        render() {
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+    let circle = new Circle(10,10,100,"#000000");
+    circle.render();
+
+</script>
